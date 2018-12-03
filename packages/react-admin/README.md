@@ -1,20 +1,17 @@
-# react-admin [![Build Status](https://travis-ci.org/marmelab/react-admin.svg?branch=master)](https://travis-ci.org/marmelab/react-admin)
+# react-admin
 
-A frontend Framework for building admin applications running in the browser on top of REST/GraphQL APIs, using ES6, [React](https://facebook.github.io/react/) and [Material Design](https://material.io/). Previously named [admin-on-rest](https://github.com/marmelab/admin-on-rest). Open sourced and maintained by [marmelab](https://marmelab.com/).
+A frontend Framework for building admin applications running in the browser on top of REST/GraphQL services, using ES6, [React](https://facebook.github.io/react/) and [Material Design](https://material.io/). Open sourced and maintained by [marmelab](https://marmelab.com/).
 
-[Demo](https://marmelab.com/react-admin-demo/) - [Documentation](https://marmelab.com/react-admin/) - [News](https://marmelab.com/en/blog/#react-admin) - [Releases](https://github.com/marmelab/react-admin/releases) - [Support](http://stackoverflow.com/questions/tagged/react-admin)
+[Demo](https://marmelab.com/react-admin-demo/) - [Documentation](https://marmelab.com/react-admin/) - [Releases](https://github.com/marmelab/react-admin/releases) - [Support](http://stackoverflow.com/questions/tagged/react-admin)
 
-[![react-admin-demo](https://marmelab.com/react-admin/img/react-admin-demo-still.png)](https://vimeo.com/268958716)
+[![react-admin-demo](https://marmelab.com/react-admin/img/react-admin-demo-still.png)](https://vimeo.com/205118063)
 
 ## Features
 
 * Adapts to any backend (REST, GraphQL, SOAP, etc.)
-* Powered by [material-ui](https://material-ui.com/), [redux](https://redux.js.org/), [redux-form](https://redux-form.com/7.3.0/), [redux-saga](https://redux-saga.js.org/), [react-router](https://reacttraining.com/react-router/), [recompose](https://github.com/acdlite/recompose), [reselect](https://github.com/reduxjs/reselect) and a few more
-* Super-fast UI thanks to optimistic rendering (renders before the server returns)
-* Undo updates and deletes for a few seconds
 * Complete documentation
+* Optimistic rendering (renders before the server returns)
 * Relationships (many to one, one to many)
-* Data Validation
 * Internationalization (i18n)
 * Conditional formatting
 * Themeable
@@ -22,6 +19,7 @@ A frontend Framework for building admin applications running in the browser on t
 * Full-featured Datagrid (sort, pagination, filters)
 * Filter-as-you-type
 * Supports any form layout (simple, tabbed, etc.)
+* Data Validation
 * Custom actions
 * Large library of components for various data types: boolean, number, rich text, etc.
 * WYSIWYG editor
@@ -29,6 +27,7 @@ A frontend Framework for building admin applications running in the browser on t
 * Super easy to extend and override (it's just React components)
 * Highly customizable interface
 * Can connect to multiple backends
+* Leverages the best libraries in the React ecosystem (Redux, redux-form, redux-saga, material-ui, recompose)
 * Can be included in another React app
 * Inspired by the popular [ng-admin](https://github.com/marmelab/ng-admin) library (also by marmelab)
 
@@ -46,15 +45,8 @@ React-admin is available from npm. You can install it (and its required dependen
 using:
 
 ```sh
-npm install react-admin
-
-#or
-yarn add react-admin
+npm install --save-dev react-admin
 ```
-
-## Upgrading From Admin-On-Rest
-
-Head to the [Upgrade Guide](https://github.com/marmelab/react-admin/blob/master/UPGRADE.md).
 
 ## Documentation
 
@@ -85,8 +77,7 @@ The `<Resource>` component is a configuration component that allows to define su
 // in posts.js
 import React from 'react';
 import { List, Datagrid, Edit, Create, SimpleForm, DateField, TextField, EditButton, DisabledInput, TextInput, LongTextInput, DateInput } from 'react-admin';
-import BookIcon from '@material-ui/core/svg-icons/action/book';
-export const PostIcon = BookIcon;
+export PostIcon from '@material-ui/core/svg-icons/action/book';
 
 export const PostList = (props) => (
     <List {...props}>
@@ -146,32 +137,17 @@ See the [Data Providers documentation](https://marmelab.com/react-admin/DataProv
 
 React-admin is designed as a library of loosely coupled React components built on top of [material-ui](http://www.material-ui.com/#/), in addition to controller functions implemented the Redux way. It is very easy to replace one part of react-admin with your own, e.g. to use a custom datagrid, GraphQL instead of REST, or bootstrap instead of Material Design.
 
-## Examples
+## Run the example
 
-There are several examples inside the `examples` folder:
-
-* `simple`: a simple application with posts, comments and users that we use for our e2e tests.
-* `tutorial`: the application built while following the tutorial.
-* `demo`: the official demo application.
-
-You can run those example applications by calling:
+You can run the example app by calling:
 
 ```sh
-# At the react-admin project root
-make install
-
-# or
-yarn install
-
-# Run the simple application
-make run-simple
-# Run the tutorial application
-make run-tutorial
-# Run the demo application
-make run-demo
+npm install
+make run
 ```
 
-And then browse to the URL displayed in your console.
+And then browse to [http://localhost:8080/](http://localhost:8080/).
+The credentials are **login/password**
 
 ## Contributing
 
@@ -183,36 +159,16 @@ You can run the tests (linting, unit and functional tests) by calling
 make test
 ```
 
-or
-
-```sh
-yarn test
-```
-
-When working on the end to end tests, you can leverage [cypress](https://www.cypress.io/) runner by starting the simple example yourself (`make run-simple`) and starting cypress in another terminal (`make test-e2e-local` or `yarn test-e2e-local`).
-
 If you have coding standards problems, you can fix them automatically using `prettier` by calling
 
 ```sh
 make prettier
 ```
 
-or
-
-```sh
-yarn prettier
-```
-
-If you want to contribute to the documentation, install [jekyll](https://jekyllrb.com/docs/home/), then call
+If you want to contribute to the documentation, install jekyll, then call
 
 ```sh
 make doc
-```
-
-or
-
-```sh
-yarn doc
 ```
 
 And then browse to [http://localhost:4000/](http://localhost:4000/)
@@ -228,7 +184,7 @@ $ cd ..
 $ git clone git@github.com:marmelab/react-admin.git && cd react-admin && make install
 # replace your node_modules/react-admin by a symbolic link to the github checkout
 $ cd ../myapp
-$ npm link ../react-admin/packages/react-admin
+$ npm link ../react-admin
 # go back to the checkout, and replace the version of react by the one in your app
 $ cd ../react-admin
 $ npm link ../myapp/node_modules/react
